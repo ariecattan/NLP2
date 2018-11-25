@@ -33,8 +33,11 @@ class PCFG(object):
             expansion = self.random_expansion(symbol)
             return " ".join(self.gen(s) for s in expansion)
 
-    def random_sent(self):
-        return self.gen("ROOT")
+    def random_sent(self, k):
+        output = []
+        for i in xrange(k):
+            output.append(self.gen("ROOT"))
+        return output
 
     def random_expansion(self, symbol):
         """
@@ -51,4 +54,8 @@ if __name__ == '__main__':
 
     import sys
     pcfg = PCFG.from_file(sys.argv[1])
-    print pcfg.random_sent()
+    type = sys.argv[2]
+    k = sys.argv[3]
+    output = pcfg.random_sent(int(k))
+    for sentence in output:
+        print(sentence)
