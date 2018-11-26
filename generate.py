@@ -53,9 +53,13 @@ class PCFG(object):
 if __name__ == '__main__':
 
     import sys
-    pcfg = PCFG.from_file(sys.argv[1])
+
+    args = sys.argv
+    pcfg = PCFG.from_file(args[1])
+
     type = sys.argv[2]
-    k = sys.argv[3]
-    output = pcfg.random_sent(int(k))
-    for sentence in output:
-        print(sentence)
+    if type == '-n':
+        k = sys.argv[3]
+        output = pcfg.random_sent(int(k))
+        for sentence in output:
+            print(sentence)
