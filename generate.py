@@ -57,9 +57,14 @@ if __name__ == '__main__':
     args = sys.argv
     pcfg = PCFG.from_file(args[1])
 
-    type = sys.argv[2]
-    if type == '-n':
-        k = sys.argv[3]
-        output = pcfg.random_sent(int(k))
+    if len(args) > 2:
+        type = sys.argv[2]
+        if type == '-n':
+            k = sys.argv[3]
+            output = pcfg.random_sent(int(k))
+            for sentence in output:
+                print(sentence)
+    else:
+        output = pcfg.random_sent(int(1))
         for sentence in output:
             print(sentence)
