@@ -27,17 +27,21 @@ class PCFG(object):
 
     def is_terminal(self, symbol): return symbol not in self._rules
 
-    def gen(self, symbol):
-        if self.is_terminal(symbol): return symbol
+    def gen(self, symbol, tree_mode):
+        if self.is_terminal(symbol): return  symbol
         else:
-            expansion = self.random_expansion(symbol)
-            return " ".join(self.gen(s) for s in expansion)
+            expansion =  self.random_expansion(symbol)
+            out = " ".join(self.gen(s, tree_mode) for s in expansion)
+            if tree_mode:
+                return "(" + symbol + " " + out + ")"
+            return out
 
-    def random_sent(self, k):
-        output = []
+
+    def random_sent(self, k, tree_mode):
+        out = ''
         for i in xrange(k):
-            output.append(self.gen("ROOT"))
-        return output
+            out += self.gen("ROOT", tree_mode) + '\n'
+        return out[:-1]
 
     def random_expansion(self, symbol):
         """
@@ -46,7 +50,8 @@ class PCFG(object):
         p = random.random() * self._sums[symbol]
         for r,w in self._rules[symbol]:
             p = p - w
-            if p < 0: return r
+            if p < 0:
+                return r
         return r
 
 
@@ -56,15 +61,16 @@ if __name__ == '__main__':
 
     args = sys.argv
     pcfg = PCFG.from_file(args[1])
+    tree_mode = False
 
-    if len(args) > 2:
-        type = sys.argv[2]
-        if type == '-n':
-            k = sys.argv[3]
-            output = pcfg.random_sent(int(k))
-            for sentence in output:
-                print(sentence)
-    else:
-        output = pcfg.random_sent(int(1))
-        for sentence in output:
-            print(sentence)
+    k=1
+    if '-n' in args:
+        k = sys.argv[3]
+
+    if '-t' in args:
+        tree_mode = True
+
+    output = pcfg.random_sent(int(k), tree_mode)
+
+
+    print(output)

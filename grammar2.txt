@@ -19,7 +19,7 @@
 
 # Rules for creating full sentences.
 
-1	ROOT	S .
+4	ROOT	S .
 1	ROOT	S !
 1	ROOT	is it true that S ?     # mixing terminals and nonterminals is ok.
 
@@ -31,17 +31,36 @@
 #    Det = determiner (sometimes called "article")
 #    Prep = preposition
 #    Adj = adjective
+#    Vi = intransitive verb
+#    Vt = transitive verb
+#    SBAR = complement
+#    COMP = complementizer
+#    CC = coordinator
+#    NNP = proper noun
 
-1	S	NP VP
-1   VP  Vi
-1   VP  Vt NP
-#1	VP	Vd NP NP
-4	NP	Det Noun #to limit entry into a loop
-2   NP  NNP
-5   NP  NP Conj NP
+
+4	S	NP VP
+1   S   Sub VP
+5   VP  Vi                  #there is no NP after intransitive verb
+2   VP  Vi SBAR             #complementizers
+1   VP  Vi CC Vi            #thought and understood
+5   VP  Vt NP               #NP after transitive verb
+1   VP  Vt CC Vt NP         #wanted and ate a sandwich
+1   VP  Vt NP SBAR          #complementizers
+1   VP  VP PP               #PP on the verb for the sentence 'the president worked on every proposal on the desk'
+1   VP  Be TGer NP           #is eating a sandwich: is + gerundive + NP
+1   VP  Be Adj              #Be + Adj --> is lazy
+1   VP  Be NP               #Be + NP --> is a sandwich
+5	NP	Det Noun            #to limit entry into a loop
+2   NP  NNP                 #proper noun like Solly
+1   NP  NP CC NP            #several NP like Sally and Sally
 1	NP	NP PP
-1	PP	Prep NP
-5	Noun	Adj Noun #to favorite more adjectives
+4	PP	Prep NP
+1   PP  PP PP               #several PP like on the desk, with Sally...
+5	Noun	Adj Noun        #to favorite more adjectives
+1   SBAR    COMP    S       #sentence like 'that ...'
+
+
 
 # Vocabulary.  Your program can see that "ate" is a terminal
 # symbol because there exists no rule for rewriting it.
@@ -53,9 +72,12 @@
 1	Vt  	wanted
 1	Vt  	kissed
 1	Vt  	pickled
+1   Vt      perplexed
 
 1	Vi  	understood
 1   Vi      sighed
+1   Vi      thought
+1   Vi      worked
 
 1	Det	the
 1	Det	a
@@ -66,11 +88,15 @@
 1	Noun	pickle
 1	Noun	chief of staff
 1	Noun	floor
+1   Noun    proposal
+1   Noun    desk
 
 1	Adj	fine
 1	Adj	delicious
 1	Adj	perplexed
 1	Adj	pickled
+1   Adj lazy
+1   Adj very
 
 
 1	Prep	with
@@ -80,5 +106,13 @@
 
 1   NNP     Sally
 
-1   Conj    or
-1   Conj    and
+1   CC      or
+1   CC      and
+
+1   COMP    that
+
+1   Sub it
+
+1   Be is
+
+1   TGer eating

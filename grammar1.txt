@@ -34,10 +34,10 @@
 
 1	S	NP VP
 1	VP	Verb NP
-4	NP	Det Noun #to limit entry into a loop
+4	NP	Det Noun        #to limit entry into a loop
 1	NP	NP PP
 1	PP	Prep NP
-5	Noun	Adj Noun #to favorite more adjectives
+5	Noun	Adj Noun    #to favorite more adjectives
 
 # Vocabulary.  Your program can see that "ate" is a terminal
 # symbol because there exists no rule for rewriting it.
@@ -45,10 +45,10 @@
 # terminals, like "chief of staff") is called a "preterminal."  Notice 
 # that a preterminal is a special kind of nonterminal.
 
-1	Verb	ate
-1	Verb	wanted
-1	Verb	kissed
-1	Verb	understood
+4	Verb	ate
+4	Verb	wanted
+2	Verb	kissed
+5	Verb	understood
 1	Verb	pickled
 
 1	Det	the
