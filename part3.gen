@@ -1,0 +1,5 @@
+(ROOT (S (Sub it) (VP (Vi sighed) (SBAR (COMP that) (S (NP (Det the) (Noun president)) (VP (Vt ate) (CC or) (Vt wanted) (NP (Det every) (Noun desk))))))) .)
+(ROOT (S (NP (NNP Sally)) (VP (Vt perplexed) (NP (Det the) (Noun floor)) (SBAR (COMP that) (S (NP (Det a) (Noun pickle)) (VP (Vi worked) (SBAR (COMP that) (S (NP (Det a) (Noun floor)) (VP (Vi understood))))))))) .)
+(ROOT (S (NP (NP (NP (Det the) (Noun (Adj delicious) (Noun sandwich))) (PP (PP (Prep under) (NP (Det every) (Noun president))) (PP (Prep on) (NP (Det a) (Noun floor))))) (PP (Prep in) (NP (Det the) (Noun sandwich)))) (VP (Vt ate) (NP (NP (Det the) (Noun chief of staff)) (PP (Prep on) (NP (Det every) (Noun floor)))))) .)
+(ROOT (S (NP (NP (NNP Sally)) (CC and) (NP (Det the) (Noun proposal))) (VP (Vi worked))) .)
+(ROOT (S (NP (NP (NNP Sally)) (PP (Prep in) (NP (NNP Sally)))) (VP (Vt kissed) (NP (Det the) (Noun (Adj delicious) (Noun chief of staff))))) .)
