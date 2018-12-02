@@ -1,3 +1,6 @@
+# We've chosen the (b) begin at line 68 and (d) begin at line 75
+
+
 # Symbols in the grammar are case-sensitive.
 # 
 # This grammar uses a convention that
@@ -21,7 +24,8 @@
 
 4	ROOT	S .
 1	ROOT	S !
-1	ROOT	is it true that S ?     # mixing terminals and nonterminals is ok.
+1   ROOT    YN ?
+100   ROOT    WH ?
 
 # The basic grammar rules.  Here's what the abbreviations stand for:
 #    S  = sentence
@@ -61,11 +65,28 @@
 1   SBAR    COMP    S       #sentence like 'that ...'
 
 
+#(b) Yes-no questions:
+1   YN  Aux NP Vtp  NP          #Vtp = transitive verb present form -- does Sally want a sandwich
+1   YN  Aux NP  Vip             #Vip = intransitive verb present form -- does Sally think
+1   YN  is it true that S       # mixing terminals and nonterminals is ok.
+1   YN  Be NP Adj               #is Sally fine ?
+
+
+#(d) WH-word questions.
+1   WH  WHT Aux NP Vtp          # what did sally eat
+1   WH  WHT Aux NP Vtp NP with  # what did Sally eat the sandwich with
+1   WH  WHT Aux NP Vip          # what did the president think
+1   WH  WHT Aux NP Vip SBAR     # what did the president think that Sally ate
+1   WH  WHI Aux NP Vtp NP       # where did Sally eat the sandwich
+1   WH  WHI Aux NP Vip          # when did Sally understand
+1   WH  who VP                  # who understood
+
+
 
 # Vocabulary.  Your program can see that "ate" is a terminal
 # symbol because there exists no rule for rewriting it.
-# Any symbol that can rewrite as a terminal (or a string of 
-# terminals, like "chief of staff") is called a "preterminal."  Notice 
+# Any symbol that can rewrite as a terminal (or a string of
+# terminals, like "chief of staff") is called a "preterminal."  Notice
 # that a preterminal is a special kind of nonterminal.
 
 1	Vt  	ate
@@ -78,6 +99,13 @@
 1   Vi      sighed
 1   Vi      thought
 1   Vi      worked
+
+1   Vtp     eat
+1   Vtp     want
+
+1   Vip     think
+1   Vip     understand
+
 
 1	Det	the
 1	Det	a
@@ -116,3 +144,15 @@
 1   Be is
 
 1   TGer eating
+
+1   Aux did
+1   Aux will
+1   Aux does
+1   Aux can
+
+1   WHT what
+
+1   WHI when
+1   WHI how
+1   WHI where
+
