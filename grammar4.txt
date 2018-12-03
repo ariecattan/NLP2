@@ -149,6 +149,8 @@
 1   Aux will
 1   Aux does
 1   Aux can
+1   Aux need
+1   Aux has
 
 1   WHT what
 
